@@ -91,6 +91,6 @@ config.i18n.fallbacks = true
     user_name:       ENV['MAILGUN_SMTP_LOGIN'],
     password:        ENV['MAILGUN_SMTP_PASSWORD'],         
     domain:          'desolate-hamlet-6224.herokuapp.com'
-    authentication:  :plain,
+    authentication:  :plain
   }
 end
