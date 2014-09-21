@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140921012410) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "reviews", force: true do |t|
     t.integer  "user_id"
     t.integer  "room_id"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140921012410) do
     t.datetime "updated_at"
   end
 
-  add_index "reviews", ["user_id", "room_id"], name: "index_reviews_on_user_id_and_room_id", unique: true
+  add_index "reviews", ["user_id", "room_id"], name: "index_reviews_on_user_id_and_room_id", unique: true, using: :btree
 
   create_table "rooms", force: true do |t|
     t.string   "title"
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 20140921012410) do
     t.integer  "reviews_count"
   end
 
-  add_index "rooms", ["user_id"], name: "index_rooms_on_user_id"
+  add_index "rooms", ["user_id"], name: "index_rooms_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "full_name"
@@ -48,6 +51,6 @@ ActiveRecord::Schema.define(version: 20140921012410) do
     t.string   "confirmation_token"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end
